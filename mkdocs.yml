@@ -1,0 +1,74 @@
+site_name: Documentations
+site_url: https://example.com
+theme:
+  name: material
+  font:
+    text: Arial
+    code: Red Hat Mono
+  icon:
+    logo: fontawesome/solid/w
+      # logo: assets/logo.png
+  # favicon: assets/favicon.ico
+  palette:
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: green
+      accent: deep purple
+
+    # Light Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: blue
+      accent: deep orange
+  features:
+    - navigation.footer
+  
+    
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+
+extra:
+  social:
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com
+
+copyright: Copyright &copy; 2025 Kai
+
+nav:
+  - Home: index.md
+  - Examples: admonitions.md
+  - Arduino:
+      - Python on Lubuntu: arduino/installing-python.md
+      - Arduino IDE Installation on Ubuntu: arduino/installing-arduino-on-lubuntu.md
+      - Python IDE and serial communication: arduino/serial-communication-python.md
+      - HC-05 Bluetooth Module Setup: arduino/HC-05-setup.md
+  - Amatuer Radio:
+      - Overview: amatuer-radio/amatuer-radio-overview.md
+      - Amatuer Radio Theory: amatuer-radio/amatuer-radio-theory.md
+      - LinBPQ Installation on Ubuntu : amatuer-radio/linbpq-installation.md
