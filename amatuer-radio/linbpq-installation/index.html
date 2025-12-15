@@ -1,0 +1,1214 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>LinBPQ Installation on Ubuntu - Documentations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arial:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Arial";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linbpq-installation-on-ubuntu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Documentations" class="md-header__button md-logo" aria-label="Documentations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M20.8 34c16.5-6.2 35 2.2 41.2 18.7l110.2 294L257.3 55c4-13.7 16.5-23 30.7-23s26.7 9.4 30.7 23l85.1 291.7L514 52.8c6.2-16.5 24.6-24.9 41.2-18.7s25 24.6 18.8 41.1l-144 384c-4.8 12.9-17.4 21.3-31.2 20.7s-25.7-9.8-29.5-23L288 178.3 206.7 457c-3.9 13.2-15.8 22.5-29.5 23s-26.3-7.8-31.2-20.7L2 75.2c-6.2-16.5 2.2-35 18.8-41.2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LinBPQ Installation on Ubuntu
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Documentations" class="md-nav__button md-logo" aria-label="Documentations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M20.8 34c16.5-6.2 35 2.2 41.2 18.7l110.2 294L257.3 55c4-13.7 16.5-23 30.7-23s26.7 9.4 30.7 23l85.1 291.7L514 52.8c6.2-16.5 24.6-24.9 41.2-18.7s25 24.6 18.8 41.1l-144 384c-4.8 12.9-17.4 21.3-31.2 20.7s-25.7-9.8-29.5-23L288 178.3 206.7 457c-3.9 13.2-15.8 22.5-29.5 23s-26.3-7.8-31.2-20.7L2 75.2c-6.2-16.5 2.2-35 18.8-41.2"/></svg>
+
+    </a>
+    Documentations
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amatuer Radio
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Amatuer Radio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinBPQ Installation on Ubuntu
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinBPQ Installation on Ubuntu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-linbpq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install LinBPQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install LinBPQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linbpq-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinBPQ Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinBPQ Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-the-linbpq-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download the LinBPQ Binary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-executable-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Executable Bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grant-low-port-and-raw-socket-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grant Low-port and Raw-socket Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-the-web-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading the Web Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linbpq-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinBPQ Configuration File
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinBPQ Configuration File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validate-and-test-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate and Test the Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-linbpq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install LinBPQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install LinBPQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create User
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linbpq-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinBPQ Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinBPQ Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-the-linbpq-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download the LinBPQ Binary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-executable-bit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Executable Bit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grant-low-port-and-raw-socket-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grant Low-port and Raw-socket Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downloading-the-web-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Downloading the Web Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linbpq-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinBPQ Configuration File
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinBPQ Configuration File">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validate-and-test-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validate and Test the Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminology Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linbpq-installation-on-ubuntu">LinBPQ Installation on Ubuntu</h1>
+<h2 id="overview">Overview</h2>
+<p>LinBPQ is a flexible packet node/BBS for amateur radio operators who want to bridge TCP/IP-based services with RF links. This guide focuses on Ubuntu systems and walks through:</p>
+<ul>
+<li>Preparing a dedicated system user with the right serial/audio permissions.</li>
+<li>Installing the Direwolf-based software TNC stack and radio interface dependencies.</li>
+<li>Downloading the LinBPQ binary plus the optional web interface so you can administer the node remotely.</li>
+</ul>
+<p>You can follow the sections sequentially on a fresh host, or cherry-pick the steps you still need on an existing setup.</p>
+<h2 id="install-linbpq">Install LinBPQ</h2>
+<h3 id="create-user">Create User</h3>
+<p>Creating a dedicated service account keeps LinBPQ isolated from other workloads and ensures the process always owns the serial/audio devices it needs. If you already have a non-root operator account in the <code>sudo</code> and <code>dialout</code> groups, you can reuse it and skip to the next section.</p>
+<p>Steps below assume you are logged in as <code>root</code> (use <code>su -l</code> first on minimal installs). Install <code>sudo</code> if it is missing, add a <code>linbpq</code> user, and grant the minimal groups required for packet work.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>su<span class="w"> </span>-l
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>apt<span class="w"> </span>install<span class="w"> </span>sudo<span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>adduser<span class="w"> </span>linbpq
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>usermod<span class="w"> </span>-aG<span class="w"> </span>sudo<span class="w"> </span>linbpq
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>usermod<span class="w"> </span>-a<span class="w"> </span>-G<span class="w"> </span>dialout<span class="w"> </span>linbpq
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>su<span class="w"> </span>linbpq
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Execution</p>
+<p>For the remaining sections, run commands as the <code>linbpq</code> user. Use <code>sudo</code> only when the step explicitly requires elevated privileges.</p>
+</div>
+<h2 id="linbpq-installation">LinBPQ Installation</h2>
+<p>With the user in place, install the tooling LinBPQ depends on: archive utilities, capability helpers, audio libraries, and Direwolf support packages. The commands below refresh the package index, install the prerequisites, and create a working directory for LinBPQ builds.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>unzip<span class="w"> </span>libcap2-bin<span class="w"> </span>screen<span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libpcap0.8-dev<span class="w"> </span>libasound2-dev<span class="w"> </span>libz3-4<span class="w"> </span>zlib1g<span class="w"> </span>libminiupnpc17<span class="w"> </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>mkdir<span class="w"> </span>~/linbpq<span class="w"> </span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">cd</span><span class="w"> </span>~/linbpq
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="download-the-linbpq-binary">Download the LinBPQ Binary</h3>
+<p>Fetch the current <code>linbpq64</code>. Keeping this download step separate makes it easy to update later without reinstalling every dependency.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>wget<span class="w"> </span>http://www.cantab.net/users/john.wiseman/Downloads/Beta/linbpq64
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="set-executable-bit">Set Executable Bit</h3>
+<p>Mark the freshly downloaded binary as executable so it can be launched without invoking an interpreter explicitly.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>linbpq64
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="grant-low-port-and-raw-socket-access">Grant Low-port and Raw-socket Access</h3>
+<p>LinBPQ needs privileged networking capabilities to bind to packet ports, interact with raw sockets, and manage PTT control without running as <code>root</code>. The <code>setcap</code> command below grants only the required kernel capabilities.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>setcap<span class="w"> </span><span class="s2">&quot;CAP_NET_ADMIN=ep CAP_NET_RAW=ep CAP_NET_BIND_SERVICE=ep&quot;</span><span class="w"> </span>linbpq64
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="downloading-the-web-interface">Downloading the Web Interface</h2>
+<p>The optional HTML interface is handy for monitoring ports and BBS sessions from a browser. Create a subfolder, download the archive, and unpack it in place.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mkdir<span class="w"> </span>HTML
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">cd</span><span class="w"> </span>HTML
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>wget<span class="w"> </span>http://www.cantab.net/users/john.wiseman/Downloads/Beta/HTMLPages.zip
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>unzip<span class="w"> </span>HTMLPages.zip
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="linbpq-configuration-file">LinBPQ Configuration File</h2>
+<p>LinBPQ reads its runtime settings from <code>bpq32.cfg</code>, which must live in the same directory as the <code>linbpq64</code> binary. The sample below defines a simple two-port node (RF + Telnet) that hands off audio to Direwolf. Feel free to adjust call signs, aliases, coordinates, and frequencies to match your station before saving.</p>
+<p>Start Direwolf in a second terminal so audio is already flowing when LinBPQ tries to connect. Serial TNC users should confirm their device path (for example <code>/dev/ttyUSB0</code>) before continuing.</p>
+<p>Back in the LinBPQ directory, create or edit the configuration file with your preferred editor:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Bash</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/linbpq
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>nano<span class="w"> </span>bpq32.cfg
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Paste the baseline configuration and edit the highlighted lines so they reflect your station. Double-check every <code>PORT</code> block to ensure the paths, speeds, and calls match your hardware and network plan.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">bpq32.cfg</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span>
+<span class="normal"><a href="#__codelineno-7-45">45</a></span>
+<span class="normal"><a href="#__codelineno-7-46">46</a></span>
+<span class="normal"><a href="#__codelineno-7-47">47</a></span>
+<span class="normal"><a href="#__codelineno-7-48">48</a></span>
+<span class="normal"><a href="#__codelineno-7-49">49</a></span>
+<span class="normal"><a href="#__codelineno-7-50">50</a></span>
+<span class="normal"><a href="#__codelineno-7-51">51</a></span>
+<span class="normal"><a href="#__codelineno-7-52">52</a></span>
+<span class="normal"><a href="#__codelineno-7-53">53</a></span>
+<span class="normal"><a href="#__codelineno-7-54">54</a></span>
+<span class="normal"><a href="#__codelineno-7-55">55</a></span>
+<span class="normal"><a href="#__codelineno-7-56">56</a></span>
+<span class="normal"><a href="#__codelineno-7-57">57</a></span>
+<span class="normal"><a href="#__codelineno-7-58">58</a></span>
+<span class="normal"><a href="#__codelineno-7-59">59</a></span>
+<span class="normal"><a href="#__codelineno-7-60">60</a></span>
+<span class="normal"><a href="#__codelineno-7-61">61</a></span>
+<span class="normal"><a href="#__codelineno-7-62">62</a></span>
+<span class="normal"><a href="#__codelineno-7-63">63</a></span>
+<span class="normal"><a href="#__codelineno-7-64">64</a></span>
+<span class="normal"><a href="#__codelineno-7-65">65</a></span>
+<span class="normal"><a href="#__codelineno-7-66">66</a></span>
+<span class="normal"><a href="#__codelineno-7-67">67</a></span>
+<span class="normal"><a href="#__codelineno-7-68">68</a></span>
+<span class="normal"><a href="#__codelineno-7-69">69</a></span>
+<span class="normal"><a href="#__codelineno-7-70">70</a></span>
+<span class="normal"><a href="#__codelineno-7-71">71</a></span>
+<span class="normal"><a href="#__codelineno-7-72">72</a></span>
+<span class="normal"><a href="#__codelineno-7-73">73</a></span>
+<span class="normal"><a href="#__codelineno-7-74">74</a></span>
+<span class="normal"><a href="#__codelineno-7-75">75</a></span>
+<span class="normal"><a href="#__codelineno-7-76">76</a></span>
+<span class="normal"><a href="#__codelineno-7-77">77</a></span>
+<span class="normal"><a href="#__codelineno-7-78">78</a></span>
+<span class="normal"><a href="#__codelineno-7-79">79</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>SIMPLE
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="hll">LOCATOR=-37.64318,145.06853
+</span></span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll">NODECALL=VK3ZUW-7
+</span></span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>NODEALIAS=WHI
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>CTEXT:
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="hll">Welcome to the VK3ZUW-7 LinBPQ Node.
+</span></span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>HMNDE&gt; BBS CHAT CONNECT BYE INFO NODES ROUTES PORTS USERS MHEARD
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>***
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>FULL_CTEXT=0
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>IDMSG:
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="hll">LinBPQ Node CITY OF WHITTLESEA AU VK3ZUW-11 BBS VK3ZUW-12 CHAT
+</span></span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a>***
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a>BTEXT:
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="hll">LinBPQ BBS/CHAT @ 439.100
+</span></span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>***
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a>INFOMSG:
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="hll">Sysop VK3ZUW.
+</span></span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>BBS to connect to the BBS.
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a>CHAT to connect to CHAT server.
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a>***
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a>EnableM0LTEMap=0                                                                                                                                                            
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a>IDINTERVAL=10                                                                                                                                                               
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29"></a>BTINTERVAL=15
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30"></a>NODESINTERVAL=25
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31"></a>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32"></a>PACLEN=236
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33"></a>BBS=1
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34"></a>NODE=1
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35"></a>HIDENODES=1
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36"></a>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37"></a>PORT
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38"></a>    PORTNUM=1
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="hll">    ID=439.100 MHz 1200 bps
+</span></span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40"></a>    TYPE=ASYNC
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41"></a>    SPEED=19200
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42"></a>    PROTOCOL=KISS
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43"></a>    IPADDR=127.0.0.1
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44"></a>    TCPPORT=8001
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45"></a>    RESPTIME=1500
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46"></a>    MHEARD=Y
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47"></a><span class="hll">    BCALL=VK3ZUW-7
+</span></span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48"></a>    MINQUAL=100
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49"></a>    KISSOPTIONS=NOPARAMS
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50"></a>    CHANNEL=A
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51"></a>    FULLDUP=0
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52"></a>    NOKEEPALIVES=1
+</span><span id="__span-7-53"><a id="__codelineno-7-53" name="__codelineno-7-53"></a>ENDPORT
+</span><span id="__span-7-54"><a id="__codelineno-7-54" name="__codelineno-7-54"></a>
+</span><span id="__span-7-55"><a id="__codelineno-7-55" name="__codelineno-7-55"></a>PORT
+</span><span id="__span-7-56"><a id="__codelineno-7-56" name="__codelineno-7-56"></a>    PORTNUM=2
+</span><span id="__span-7-57"><a id="__codelineno-7-57" name="__codelineno-7-57"></a>    ID=Telnet
+</span><span id="__span-7-58"><a id="__codelineno-7-58" name="__codelineno-7-58"></a>    DRIVER=Telnet
+</span><span id="__span-7-59"><a id="__codelineno-7-59" name="__codelineno-7-59"></a>    QUALITY=0
+</span><span id="__span-7-60"><a id="__codelineno-7-60" name="__codelineno-7-60"></a>    CONFIG
+</span><span id="__span-7-61"><a id="__codelineno-7-61" name="__codelineno-7-61"></a>    LOGGING=1
+</span><span id="__span-7-62"><a id="__codelineno-7-62" name="__codelineno-7-62"></a>    DisconnectOnClose=0
+</span><span id="__span-7-63"><a id="__codelineno-7-63" name="__codelineno-7-63"></a>    SECURETELNET=1
+</span><span id="__span-7-64"><a id="__codelineno-7-64" name="__codelineno-7-64"></a>    LOGGING=1
+</span><span id="__span-7-65"><a id="__codelineno-7-65" name="__codelineno-7-65"></a>    TCPPORT=8100
+</span><span id="__span-7-66"><a id="__codelineno-7-66" name="__codelineno-7-66"></a>    FBBPORT=8101
+</span><span id="__span-7-67"><a id="__codelineno-7-67" name="__codelineno-7-67"></a>    IPV4=1
+</span><span id="__span-7-68"><a id="__codelineno-7-68" name="__codelineno-7-68"></a>    HTTPPORT=8080
+</span><span id="__span-7-69"><a id="__codelineno-7-69" name="__codelineno-7-69"></a>    LOGINPROMPT=Username:
+</span><span id="__span-7-70"><a id="__codelineno-7-70" name="__codelineno-7-70"></a>    PASSWORDPROMPT=Password:
+</span><span id="__span-7-71"><a id="__codelineno-7-71" name="__codelineno-7-71"></a>    MAXSESSIONS=15
+</span><span id="__span-7-72"><a id="__codelineno-7-72" name="__codelineno-7-72"></a>    CloseOnDisconnect=1
+</span><span id="__span-7-73"><a id="__codelineno-7-73" name="__codelineno-7-73"></a>    CTEXT=Welcome to LinBPQ Telnet Server\nEnter ? for list of commands\n\n
+</span><span id="__span-7-74"><a id="__codelineno-7-74" name="__codelineno-7-74"></a><span class="hll">    USER=TECHSCHOOL,TECHSCHOOL,VK3ZUW,&quot;&quot;,sysop
+</span></span><span id="__span-7-75"><a id="__codelineno-7-75" name="__codelineno-7-75"></a>ENDPORT
+</span><span id="__span-7-76"><a id="__codelineno-7-76" name="__codelineno-7-76"></a>
+</span><span id="__span-7-77"><a id="__codelineno-7-77" name="__codelineno-7-77"></a><span class="hll">APPLICATION 1,BBS,,VK3ZUW-11,MHBBS,255
+</span></span><span id="__span-7-78"><a id="__codelineno-7-78" name="__codelineno-7-78"></a><span class="hll">APPLICATION 2,CHAT,,VK3ZUW-12,MHCHT,255
+</span></span><span id="__span-7-79"><a id="__codelineno-7-79" name="__codelineno-7-79"></a>LINMAIL
+</span></code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Customise Before Running</p>
+<p>Update every highlighted field in <code>bpq32.cfg</code> before going live:
+- Identity: replace <code>NODECALL</code>, <code>NODEALIAS</code>, <code>BCALL</code>, and the <code>APPLICATION</code> call signs with your licensed calls.
+- Location and RF info: set <code>LOCATOR</code>, <code>ID</code>, <code>BTEXT</code>, and beacon text (<code>CTEXT</code>, <code>IDMSG</code>, <code>INFOMSG</code>) so they describe your site and frequency accurately.
+- Port specifics: ensure each <code>PORT</code> block uses the correct <code>IPADDR</code>, <code>TCPPORT</code>, <code>SPEED</code>, <code>USER=</code> credentials, and <code>KISSOPTIONS</code> for your Direwolf/Telnet setup.
+- Security: choose unique Telnet usernames/passwords in the <code>USER=</code> line and keep them private.
+Save the file (<code>Ctrl+O</code> in <code>nano</code>) and exit (<code>Ctrl+X</code>) once everything matches your station plan.</p>
+</div>
+<h3 id="validate-and-test-the-configuration">Validate and Test the Configuration</h3>
+<ol>
+<li>In Terminal A, launch Direwolf with your KISS/TCP configuration:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>direwolf
+</span></code></pre></div></li>
+<li>In Terminal B, start LinBPQ (ensure in linbpq user):
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>~/linbpq
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>./linbpq64
+</span></code></pre></div></li>
+<li>From another machine or local machine, verify connectivity:<ul>
+<li><code>telnet &lt;host&gt; 8100</code> for the application port</li>
+<li><code>telnet &lt;host&gt; 8080</code> to load the built-in web interface</li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Connection Tips</p>
+<p>Use <code>127.0.0.1</code> when testing locally; otherwise point to the LAN/WAN IP of the machine running LinBPQ and Direwolf. If you changed <code>TCPPORT</code>, <code>FBBPORT</code>, or <code>HTTPPORT</code>, update the test commands accordingly.</p>
+</div>
+<h2 id="terminology-reference">Terminology Reference</h2>
+<details class="info">
+<summary>Identity &amp; Messaging</summary>
+<ul>
+<li><code>SIMPLE</code>: Uses the condensed node menu and hides advanced prompts for small BBS installs.</li>
+<li><code>LOCATOR</code>: Latitude/longitude (or Maidenhead pair) so mapping tools know where the node sits.</li>
+<li><code>NODECALL</code> / <code>NODEALIAS</code>: RF call sign and short alias announced to other nodes.</li>
+<li><code>CTEXT</code>: Greeting displayed when a user connects over RF or Telnet; terminated by <code>***</code>.</li>
+<li><code>FULL_CTEXT</code>: When set to <code>1</code>, the entire <code>CTEXT</code> repeats at each prompt; <code>0</code> shows it once per session.</li>
+<li><code>IDMSG</code>: Text transmitted during ID frames so neighbouring nodes recognise you.</li>
+<li><code>BTEXT</code>: Beacon payload typically containing frequency and service summary.</li>
+<li><code>INFOMSG</code>: Message returned when someone issues the <code>INFO</code> command.</li>
+<li><code>EnableM0LTEMap</code>: Controls whether the node uploads heard-station data to the public map maintained by M0LTE (off in this sample).</li>
+</ul>
+</details>
+<details class="info">
+<summary>Timing &amp; Broadcasts</summary>
+<ul>
+<li><code>IDINTERVAL</code>: Minutes between automatic ID frames.</li>
+<li><code>BTINTERVAL</code>: Minutes between beacon transmissions that use <code>BTEXT</code>.</li>
+<li><code>NODESINTERVAL</code>: Minutes between node list broadcasts over RF.</li>
+</ul>
+</details>
+<details class="info">
+<summary>Core Behaviour</summary>
+<ul>
+<li><code>PACLEN</code>: Maximum AX.25 frame length in bytes (236 is safe for 1200-baud links).</li>
+<li><code>BBS</code>: Enables (<code>1</code>) or disables (<code>0</code>) the mailbox application.</li>
+<li><code>NODE</code>: Enables the node-switching service so users can reach other stations through you.</li>
+<li><code>HIDENODES</code>: Hides downstream nodes from the public list when set to <code>1</code>.</li>
+</ul>
+</details>
+<details class="info">
+<summary>RF Port (PORTNUM=1)</summary>
+<ul>
+<li><code>PORT</code> / <code>ENDPORT</code>: Wraps the definition of a single transport.</li>
+<li><code>PORTNUM</code>: Unique number LinBPQ uses when routing to this port.</li>
+<li><code>ID</code>: Friendly description shown in logs and status screens.</li>
+<li><code>TYPE</code>: <code>ASYNC</code> means the port talks to a serial/TCP TNC as opposed to an HDLC card.</li>
+<li><code>SPEED</code>: Serial bitrate for the KISS connection or pseudo-serial socket.</li>
+<li><code>PROTOCOL</code>: <code>KISS</code> instructs LinBPQ to speak the KISS framing protocol to Direwolf.</li>
+<li><code>IPADDR</code> / <code>TCPPORT</code>: Host and port of the Direwolf KISS listener (often 127.0.0.1:8001).</li>
+<li><code>RESPTIME</code>: Milliseconds LinBPQ waits for acknowledgements before retrying.</li>
+<li><code>MHEARD</code>: When <code>Y</code>, maintains the "stations heard" list for this port.</li>
+<li><code>BCALL</code>: Call sign used in beacons originating on this port.</li>
+<li><code>MINQUAL</code>: Minimum neighbour quality score required before accepting their routes.</li>
+<li><code>KISSOPTIONS</code>: Extra directives for Direwolf/KISS; <code>NOPARAMS</code> keeps the link simple.</li>
+<li><code>CHANNEL</code>: Distinguishes multiple radios driven from one TNC (A/B/C...).</li>
+<li><code>FULLDUP</code>: Set to <code>0</code> for half-duplex simplex work, <code>1</code> for full-duplex links.</li>
+<li><code>NOKEEPALIVES</code>: Disables periodic keepalive frames to chatty TNCs.</li>
+</ul>
+</details>
+<details class="info">
+<summary>Telnet/Service Port (PORTNUM=2)</summary>
+<ul>
+<li><code>DRIVER</code>: <code>Telnet</code> enables the built-in Telnet/HTTP server stack.</li>
+<li><code>QUALITY</code>: Advertised path quality for this logical port (0 keeps it off RF routing tables).</li>
+<li><code>CONFIG</code> ... <code>ENDPORT</code>: Nested block containing driver-specific settings.</li>
+<li><code>LOGGING</code>: When <code>1</code>, records logins and session info to the console/log file.</li>
+<li><code>DisconnectOnClose</code> / <code>CloseOnDisconnect</code>: Control how Telnet sockets tear down when the client exits.</li>
+<li><code>SECURETELNET</code>: Forces login prompts before giving node access.</li>
+<li><code>TCPPORT</code>: Telnet port for interactive BBS/node work (8100 in this sample).</li>
+<li><code>FBBPORT</code>: Optional forwarding port compatible with FBB-style mail exchanges.</li>
+<li><code>IPV4</code>: Enables IPv4 listening (set to <code>0</code> to disable).</li>
+<li><code>HTTPPORT</code>: Port that serves the HTML status pages (8080 here).</li>
+<li><code>LOGINPROMPT</code> / <code>PASSWORDPROMPT</code>: Custom strings shown during authentication.</li>
+<li><code>MAXSESSIONS</code>: Maximum concurrent Telnet users.</li>
+<li><code>CTEXT</code> (inside CONFIG): Telnet-specific greeting; <code>\n</code> sequences add new lines.</li>
+<li><code>USER=USERNAME,PASSWORD,CALL,"",LEVEL</code>: Defines login credentials and privilege level (<code>sysop</code> grants full control).</li>
+</ul>
+</details>
+<details class="info">
+<summary>Applications &amp; Mail</summary>
+<ul>
+<li><code>APPLICATION n,NAME,,CALL,ALIAS,QUAL</code>: Maps menu numbers (1=BBS, 2=CHAT) to specific services or call signs.</li>
+<li><code>LINMAIL</code>: Enables the built-in LinBPQ mailer required for BBS message storage and forwarding.</li>
+</ul>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://themodernham.com/install-linbpq-bbs-packet-node-on-debian-ubuntu-and-raspbian/">TheModernHam LinBPQ BBS Install on Ubuntu</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Kai
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://youtube.com" target="_blank" rel="noopener" title="youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
