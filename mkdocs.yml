@@ -50,6 +50,8 @@ markdown_extensions:
       alternate_style: true
   - admonition
   - pymdownx.details
+  - md_in_html
+  - pymdownx.blocks.caption
 
 extra:
   social:
@@ -72,3 +74,4 @@ nav:
       - Overview: amatuer-radio/amatuer-radio-overview.md
       - Amatuer Radio Theory: amatuer-radio/amatuer-radio-theory.md
       - LinBPQ Installation on Ubuntu : amatuer-radio/linbpq-installation.md
+      - Direwolf Installation on Ubuntu: amatuer-radio/direwolf-installation.md
