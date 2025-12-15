@@ -173,7 +173,7 @@ Paste the baseline configuration and edit the highlighted lines so they reflect 
     APPLICATION 1,BBS,,VK3ZUW-11,MHBBS,255
     APPLICATION 2,CHAT,,VK3ZUW-12,MHCHT,255
     LINMAIL
-
+    LINCHAT
     ```
 
 !!! Warning "Customise Before Running"
@@ -264,6 +264,7 @@ Paste the baseline configuration and edit the highlighted lines so they reflect 
 ??? info "Applications & Mail"
     - `APPLICATION n,NAME,,CALL,ALIAS,QUAL`: Maps menu numbers (1=BBS, 2=CHAT) to specific services or call signs.
     - `LINMAIL`: Enables the built-in LinBPQ mailer required for BBS message storage and forwarding.
+    - `LINCHAT`: Enables the  built-in LINBPQ chat required
 
 ## References
 * [TheModernHam LinBPQ BBS Install on Ubuntu](https://themodernham.com/install-linbpq-bbs-packet-node-on-debian-ubuntu-and-raspbian/)
