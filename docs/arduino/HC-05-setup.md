@@ -74,7 +74,7 @@ The sections below verifies the setup by building a full end-to-end telemetry li
 * Jumper wires
 - 4.7k resistor
 - HC-05 module
-- DS18B20 waterproof tmeperature sensor
+- DS18B20 waterproof temperature sensor
 - Bi-directional logic level convertor
 
 Now put the link to work by streaming temperature readings from the DS18B20 sensor to your laptop over Bluetooth. Wire the circuit below before uploading any code:
@@ -107,6 +107,11 @@ Serial.println(String(tempC, 1));
 delay(1000);
 }
 ```
+
+??? tip "Need to install `DallasTemperature` and `OneWire`"
+    Refer to [Install Required Libraries](/arduino/DS18B20-temperature-sensor) section
+
+
 
 Next, run this Python script in Thonny or any terminal-based interpreter to listen for the values:
 
