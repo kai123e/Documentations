@@ -71,10 +71,12 @@ nav:
       - Python IDE and serial communication: arduino/serial-communication-python.md
       - HC-05 Bluetooth Module Setup: arduino/HC-05-setup.md
       - DS18B20 Temperature Sensor with Arduino: arduino/DS18B20-temperature-sensor.md
+      - Data Transfer using Dweet: arduino/python-dweet.md
   - Amatuer Radio:
       - Overview: amatuer-radio/amatuer-radio-overview.md
       - Amatuer Radio Theory: amatuer-radio/amatuer-radio-theory.md
       - LinBPQ Installation on Ubuntu : amatuer-radio/linbpq-installation.md
       - Direwolf Installation on Ubuntu: amatuer-radio/direwolf-installation.md
+      - Replicating LinBPQ Chat Using Python: amatuer-radio/python-chat.md
   - Victron:
       - Demo Account Autentication: victron/victron-demo-python-authentication.md

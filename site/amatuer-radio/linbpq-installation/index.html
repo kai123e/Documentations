@@ -12,6 +12,8 @@
         <link rel="prev" href="../amatuer-radio-theory/">
       
       
+        <link rel="next" href="../direwolf-installation/">
+      
       
         
       
@@ -436,6 +438,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arduino/DS18B20-temperature-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DS18B20 Temperature Sensor with Arduino
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -768,6 +798,144 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../direwolf-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Direwolf Installation on Ubuntu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python-chat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replicating LinBPQ Chat Using Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Victron
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Victron
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../victron/victron-demo-python-authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo Account Autentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1156,7 +1324,8 @@
 <span class="normal"><a href="#__codelineno-7-76">76</a></span>
 <span class="normal"><a href="#__codelineno-7-77">77</a></span>
 <span class="normal"><a href="#__codelineno-7-78">78</a></span>
-<span class="normal"><a href="#__codelineno-7-79">79</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>SIMPLE
+<span class="normal"><a href="#__codelineno-7-79">79</a></span>
+<span class="normal"><a href="#__codelineno-7-80">80</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>SIMPLE
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="hll">LOCATOR=-37.64318,145.06853
 </span></span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="hll">NODECALL=VK3ZUW-7
 </span></span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>NODEALIAS=WHI
@@ -1235,6 +1404,7 @@
 </span><span id="__span-7-77"><a id="__codelineno-7-77" name="__codelineno-7-77"></a><span class="hll">APPLICATION 1,BBS,,VK3ZUW-11,MHBBS,255
 </span></span><span id="__span-7-78"><a id="__codelineno-7-78" name="__codelineno-7-78"></a><span class="hll">APPLICATION 2,CHAT,,VK3ZUW-12,MHCHT,255
 </span></span><span id="__span-7-79"><a id="__codelineno-7-79" name="__codelineno-7-79"></a>LINMAIL
+</span><span id="__span-7-80"><a id="__codelineno-7-80" name="__codelineno-7-80"></a>LINCHAT
 </span></code></pre></div></td></tr></table></div>
 </div>
 </div>
@@ -1343,6 +1513,7 @@ Save the file (<code>Ctrl+O</code> in <code>nano</code>) and exit (<code>Ctrl+X<
 <ul>
 <li><code>APPLICATION n,NAME,,CALL,ALIAS,QUAL</code>: Maps menu numbers (1=BBS, 2=CHAT) to specific services or call signs.</li>
 <li><code>LINMAIL</code>: Enables the built-in LinBPQ mailer required for BBS message storage and forwarding.</li>
+<li><code>LINCHAT</code>: Enables the  built-in LINBPQ chat required</li>
 </ul>
 </details>
 <h2 id="references">References</h2>
@@ -1393,6 +1564,22 @@ Save the file (<code>Ctrl+O</code> in <code>nano</code>) and exit (<code>Ctrl+X<
             </div>
           </a>
         
+        
+          
+          <a href="../direwolf-installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Direwolf Installation on Ubuntu">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Direwolf Installation on Ubuntu
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
