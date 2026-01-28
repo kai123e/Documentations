@@ -1,0 +1,17 @@
+
+const float DIVIDER_RATIO = 3.0; // battery voltage divided by 3
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int raw = analogRead(A0);
+  float vA0 = (raw * 5.0) / 1023.0;
+  float batteryVoltage = vA0 * DIVIDER_RATIO;
+
+  Serial.print("Battery Voltage: ");
+  Serial.println(batteryVoltage, 2);
+
+  delay(1000);
+}
