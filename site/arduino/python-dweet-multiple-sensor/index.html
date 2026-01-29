@@ -618,10 +618,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#python-fetch-plot-currently-plots-only-temperature1" class="md-nav__link">
+  <a href="#python-fetch-plot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Python Fetch &amp; Plot (currently plots only temperature1)
+        Python Fetch &amp; Plot
       
     </span>
   </a>
@@ -1002,10 +1002,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#python-fetch-plot-currently-plots-only-temperature1" class="md-nav__link">
+  <a href="#python-fetch-plot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Python Fetch &amp; Plot (currently plots only temperature1)
+        Python Fetch &amp; Plot
       
     </span>
   </a>
@@ -1031,16 +1031,16 @@
 
 <h1 id="dweet-for-mutiple-sensors-on-1-pin">Dweet for Mutiple sensors on 1 Pin</h1>
 <h2 id="overview">Overview</h2>
-<p>This guide demonstrates how to read multiple DS18B20 temperature sensors on a single Arduino digital pin using the OneWire bus, publish the readings via Bluetooth serial to a Python sender, and then push the data to dweet.cc. It also includes a basic history plotting script (currently showing only temperature1) and guidance on how to extend it to plot multiple series.</p>
+<p>This guide demonstrates how to read multiple DS18B20 temperature sensors on a single Arduino digital pin using the OneWire bus, publish the readings via Bluetooth serial to a Python sender, and then push the data to dweet.cc. It also includes a basic history plotting script for multiple temperature series.</p>
 <p><img alt="DS18B20 wiring diagram" src="../../assets/BluetoothTemp.png" width="1000" />
   Figure 1: Example schematic wiring for a 5 V Arduino and three DS18B20 temperature sensor in parallel with a pull-up resistor on the data line.</p>
 <p><img alt="DS18B20 wiring diagram" src="../../assets/PhysicalCircuit.jpeg" width="1000" />
   Figure 2: Example wiring for a 5 V Arduino and three DS18B20 temperature sensor in parallel with a pull-up resistor on the data line.</p>
 <h2 id="system-overview">System overview</h2>
 <ul>
-<li>Arduino reads temperatures from 3× DS18B20 sensors on one pin and prints comma-separated values over Serial every second.</li>
-<li>Python sender (sender.py) reads those CSV lines over a Bluetooth serial port (e.g., /dev/rfcomm0) and dweets them to https://dweet.cc.</li>
-<li>A plotter script fetches historical dweets for the thing name and plots temperature1 vs time (you can later extend it for temperature2 &amp; temperature3).</li>
+<li>Arduino reads temperatures from 3 × DS18B20 sensors on one pin and prints comma-separated values over Serial every second.</li>
+<li>Python sender (<code>sender.py</code>) reads those CSV lines over a Bluetooth serial port (e.g., <code>/dev/rfcomm0</code>) and dweets them to <code>https://dweet.cc</code>.</li>
+<li>A plotter script fetches historical dweets for the thing name and plots temperature vs time.</li>
 </ul>
 <h2 id="hardware-wiring">Hardware &amp; Wiring</h2>
 <ul>
@@ -1111,14 +1111,14 @@
 <details class="notes">
 <summary>How it works</summary>
 <ul>
-<li>OneWire Bus: All DS18B20 sensors share one data pin (here, D2 via #define ONE_WIRE_BUS 2). A 4.7 kΩ pull-up resistor from DATA to VCC is required.</li>
-<li>Library Setup: OneWire handles the low-level bus, while DallasTemperature provides high-level temperature commands.</li>
-<li>Device Discovery: sensors.getDeviceCount() detects how many sensors are on the bus and stores that number in deviceCount.</li>
+<li><code>OneWire</code> Bus: All DS18B20 sensors share one data pin (here, D2 via <code>#define ONE_WIRE_BUS 2</code>). A 4.7 kΩ pull-up resistor from DATA to VCC is required.</li>
+<li>Library Setup: <code>OneWire</code> handles the low-level bus, while <code>DallasTemperature</code> provides high-level temperature commands.</li>
+<li>Device Discovery: sensors.<code>getDeviceCount()</code> detects how many sensors are on the bus and stores that number in deviceCount.</li>
 <li>Measurement Loop:<ul>
-<li>sensors.requestTemperatures() triggers conversions on all sensors.</li>
-<li>A for loop reads each sensor by index (getTempCByIndex(i)).</li>
-<li>Values are printed as comma-separated floats followed by a newline, e.g. 23.50,23.69,23.61.</li>
-<li>A delay(1000) outputs roughly one line per second.</li>
+<li><code>sensors.requestTemperatures()</code> triggers conversions on all sensors.</li>
+<li>A for loop reads each sensor by index <code>(getTempCByIndex(i))</code>.</li>
+<li>Values are printed as comma-separated floats followed by a newline, <code>e.g. 23.50,23.69,23.61</code>.</li>
+<li>A <code>delay(1000)</code> outputs roughly one line per second.</li>
 </ul>
 </li>
 <li>Note on Indexing: Index order can change across boots. If you ever need stable labeling (e.g., “Sensor A/B/C”), switch to reading by sensor address (not done here to keep code simple).</li>
@@ -1141,7 +1141,7 @@
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1"># ---- CONFIG ----</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">BASE_THING_NAME</span> <span class="o">=</span> <span class="s2">&quot;whittlesea_tech_school&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">BASE_THING_NAME</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
 </span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">SERIAL_PORT</span> <span class="o">=</span> <span class="s2">&quot;/dev/rfcomm0&quot;</span> 
 </span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">BAUD_RATE</span> <span class="o">=</span> <span class="mi">9600</span>
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">POST_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://dweet.cc/dweet/for/</span><span class="si">{</span><span class="n">BASE_THING_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1197,27 +1197,27 @@
 <details class="notes">
 <summary>How it works</summary>
 <ul>
-<li>Serial Input: Opens the Bluetooth serial device (/dev/rfcomm0) at 9600 baud, matching the Arduino’s Serial.begin(9600). The 2-second sleep lets Arduino reset.</li>
-<li>Parsing: Each line read from serial is decoded (utf-8) and passed to parse_temperatures(), which splits by comma and converts to floats.Malformed lines return None and are skipped.</li>
-<li>Timestamp: Generates an ISO-8601 timestamp (datetime.now().isoformat()) stored as time.</li>
+<li>Serial Input: Opens the Bluetooth serial device (<code>/dev/rfcomm0</code>) at 9600 baud, matching the Arduino’s <code>Serial.begin(9600)</code>. The 2-second sleep lets Arduino reset.</li>
+<li>Parsing: Each line read from serial is decoded (utf-8) and passed to <code>parse_temperatures()</code>, which splits by comma and converts to <code>floats.Malformed</code> lines return <code>None</code> and are skipped.</li>
+<li>Timestamp: Generates an ISO-8601 timestamp (<code>datetime.now().isoformat()</code>) stored as time.</li>
 <li>Payload &amp; Dweet:<ul>
-<li>Sends a GET request to https://dweet.cc/dweet/for/whittlesea_tech_school.</li>
-<li>Includes keys: temperature1, temperature2, temperature3, and time.</li>
+<li>Sends a GET request to <code>https://dweet.cc/dweet/for/test</code>.</li>
+<li>Includes keys: <code>temperature1</code>, <code>temperature2</code>, <code>temperature3</code>, and <code>time</code>.</li>
 <li>On success, prints the payload and HTTP status code.</li>
 </ul>
 </li>
-<li>Retry Logic: If serial or network errors occur, it logs a warning and retries after 5 seconds. Ctrl+C stops the loop gracefully.</li>
-<li>Thing Privacy: BASE_THING_NAME is public-by-name on dweet.cc. Use a non-obvious name if you want to reduce casual discovery.</li>
+<li>Retry Logic: If serial or network errors occur, it logs a warning and retries after 5 seconds. <code>Ctrl+C</code> stops the loop gracefully.</li>
+<li>Thing Privacy: <code>BASE_THING_NAME</code> is public-by-name on <code>dweet.cc</code>. Use a non-obvious name if you want to reduce casual discovery.</li>
 </ul>
 </details>
-<h2 id="python-fetch-plot-currently-plots-only-temperature1">Python Fetch &amp; Plot (currently plots only temperature1)</h2>
+<h2 id="python-fetch-plot">Python Fetch &amp; Plot</h2>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">THING_NAME</span> <span class="o">=</span> <span class="s2">&quot;whittlesea_tech_school&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">THING_NAME</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://dweet.cc&quot;</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">fetch_latest</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]:</span>
@@ -1237,62 +1237,68 @@
 </span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="n">history</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;with&quot;</span><span class="p">]</span>
-</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="n">temperatures</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="n">temperature1</span><span class="p">,</span> <span class="n">temperature2</span><span class="p">,</span> <span class="n">temperature3</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
 </span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    <span class="n">dates</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">history</span><span class="p">:</span>
-</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>       <span class="n">temperatures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;temperature1&quot;</span><span class="p">]))</span>
-</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>       <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;time&quot;</span><span class="p">]))</span>
-</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
-</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    <span class="c1"># Create figure and axes</span>
-</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>
-</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    <span class="c1"># Plot the data</span>
-</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">)</span>
-</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
-</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    <span class="c1">#vFormat the x-axis for better readability</span>
-</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>    <span class="c1"># Automatically format the date labels</span>
-</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    <span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span> 
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>       <span class="n">temperature1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;temperature1&quot;</span><span class="p">]))</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>       <span class="n">temperature2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;temperature2&quot;</span><span class="p">]))</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>       <span class="n">temperature3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;temperature3&quot;</span><span class="p">]))</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>       <span class="n">dates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">][</span><span class="s2">&quot;time&quot;</span><span class="p">]))</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    <span class="c1"># Create figure and axes</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    <span class="c1"># Plot the data</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">temperature1</span><span class="p">)</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">temperature2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dates</span><span class="p">,</span> <span class="n">temperature3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
 </span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
-</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>    <span class="c1"># Add labels and title</span>
-</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Temperature (C)&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Time vs temperature plot&quot;</span><span class="p">)</span>
-</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>
-</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>    <span class="c1"># Display the plot</span>
-</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
-</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
-</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>    <span class="n">reading</span> <span class="o">=</span> <span class="n">fetch_latest</span><span class="p">()</span>
-</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Latest reading:&quot;</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
-</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>    <span class="n">plot_history_temperature</span><span class="p">()</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>    <span class="c1">#vFormat the x-axis for better readability</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>    <span class="c1"># Automatically format the date labels</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>    <span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">()</span> 
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>    <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Temperature 1&quot;</span><span class="p">,</span><span class="s2">&quot;Temperature 2&quot;</span><span class="p">,</span><span class="s2">&quot;Temperature 3&quot;</span><span class="p">])</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>    <span class="c1"># Add labels and title</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Temperature (C)&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Time vs temperature plot&quot;</span><span class="p">)</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>    <span class="c1"># Display the plot</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>    <span class="n">reading</span> <span class="o">=</span> <span class="n">fetch_latest</span><span class="p">()</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Latest reading:&quot;</span><span class="p">,</span> <span class="n">reading</span><span class="p">)</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>    <span class="n">plot_history_temperature</span><span class="p">()</span>
 </span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">JSON content</p>
+<ul>
+<li>Ensure that the data from publishing and extracting the dictionary are consistent otherwise error will occur.</li>
+</ul>
+</div>
 <details class="notes">
 <summary>How it works</summary>
 <ul>
 <li>
 <p>Endpoints Used:</p>
 <ul>
-<li>Latest: GET /get/latest/dweet/for/{THING_NAME} — returns the most recent - dweet; this script extracts content.temperature1 and the custom time.</li>
-<li>History: GET /get/dweets/for/{THING_NAME} — returns a list under with; the script iterates through it to build arrays.</li>
+<li>Latest: <code>GET /get/latest/dweet/for/{THING_NAME}</code> — returns the most recent - dweet; this script extracts content.temperature1 and the custom time.</li>
+<li>History: <code>GET /get/dweets/for/{THING_NAME}</code> — returns a list under with; the script iterates through it to build arrays.</li>
 </ul>
 </li>
 <li>
 <p>Data Extraction:</p>
 <ul>
-<li>temperatures: list of temperature1 values from each dweet’s content.</li>
+<li>temperatures: list of <code>temperature1</code>, <code>temperature2</code> and <code>temperature3</code>values from each dweet’s content.</li>
 <li>dates: list of parsed timestamps from content.time (ISO-8601).</li>
 </ul>
 </li>
 <li>
 <p>Plotting:</p>
 <ul>
-<li>Uses Matplotlib to plot Temperature 1 vs Time.</li>
-<li>Calls fig.autofmt_xdate() to make time labels readable.</li>
-</ul>
-</li>
-<li>
-<p>Current Limitation:</p>
-<ul>
-<li>Only temperature1 is plotted. To visualize all three, you’d parse temperature2 and temperature3 similarly and plot multiple lines on the same axes.</li>
+<li>Uses <code>Matplotlib</code> to plot Temperature vs Time.</li>
+<li>Calls <code>fig.autofmt_xdate()</code> to make time labels readable.</li>
 </ul>
 </li>
 </ul>
