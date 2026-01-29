@@ -1,7 +1,7 @@
 # Dweet for Mutiple sensors on 1 Pin
 
 ## Overview
-This guide demonstrates how to read multiple DS18B20 temperature sensors on a single Arduino digital pin using the OneWire bus, publish the readings via Bluetooth serial to a Python sender, and then push the data to dweet.cc. It also includes a basic history plotting script (currently showing only temperature1) and guidance on how to extend it to plot multiple series.
+This guide demonstrates how to read multiple DS18B20 temperature sensors on a single Arduino digital pin using the OneWire bus, publish the readings via Bluetooth serial to a Python sender, and then push the data to dweet.cc. It also includes a basic history plotting script for multiple temperature series.
 
   ![DS18B20 wiring diagram](../assets/BluetoothTemp.png){ width="1000" }
   Figure 1: Example schematic wiring for a 5 V Arduino and three DS18B20 temperature sensor in parallel with a pull-up resistor on the data line.
@@ -12,9 +12,9 @@ This guide demonstrates how to read multiple DS18B20 temperature sensors on a si
 
 
 ## System overview
-- Arduino reads temperatures from 3× DS18B20 sensors on one pin and prints comma-separated values over Serial every second.
-- Python sender (sender.py) reads those CSV lines over a Bluetooth serial port (e.g., /dev/rfcomm0) and dweets them to https://dweet.cc.
-- A plotter script fetches historical dweets for the thing name and plots temperature1 vs time (you can later extend it for temperature2 & temperature3).
+- Arduino reads temperatures from 3 × DS18B20 sensors on one pin and prints comma-separated values over Serial every second.
+- Python sender (`sender.py`) reads those CSV lines over a Bluetooth serial port (e.g., `/dev/rfcomm0`) and dweets them to `https://dweet.cc`.
+- A plotter script fetches historical dweets for the thing name and plots temperature vs time.
 
 ## Hardware & Wiring
 - Arduino
@@ -78,14 +78,14 @@ void loop(void) {
 ```
 
 ??? notes "How it works"
-    - OneWire Bus: All DS18B20 sensors share one data pin (here, D2 via #define ONE_WIRE_BUS 2). A 4.7 kΩ pull-up resistor from DATA to VCC is required.
-    - Library Setup: OneWire handles the low-level bus, while DallasTemperature provides high-level temperature commands.
-    - Device Discovery: sensors.getDeviceCount() detects how many sensors are on the bus and stores that number in deviceCount.
+    - `OneWire` Bus: All DS18B20 sensors share one data pin (here, D2 via `#define ONE_WIRE_BUS 2`). A 4.7 kΩ pull-up resistor from DATA to VCC is required.
+    - Library Setup: `OneWire` handles the low-level bus, while `DallasTemperature` provides high-level temperature commands.
+    - Device Discovery: sensors.`getDeviceCount()` detects how many sensors are on the bus and stores that number in deviceCount.
     - Measurement Loop:
-        - sensors.requestTemperatures() triggers conversions on all sensors.
-        - A for loop reads each sensor by index (getTempCByIndex(i)).
-        - Values are printed as comma-separated floats followed by a newline, e.g. 23.50,23.69,23.61.
-        - A delay(1000) outputs roughly one line per second.
+        - `sensors.requestTemperatures()` triggers conversions on all sensors.
+        - A for loop reads each sensor by index `(getTempCByIndex(i))`.
+        - Values are printed as comma-separated floats followed by a newline, `e.g. 23.50,23.69,23.61`.
+        - A `delay(1000)` outputs roughly one line per second.
     - Note on Indexing: Index order can change across boots. If you ever need stable labeling (e.g., “Sensor A/B/C”), switch to reading by sensor address (not done here to keep code simple).
 
 ## Python Publisher: Read Serial & Dweet (sender.py)
@@ -103,7 +103,7 @@ import serial
 from datetime import datetime
 
 # ---- CONFIG ----
-BASE_THING_NAME = "whittlesea_tech_school"
+BASE_THING_NAME = "test"
 SERIAL_PORT = "/dev/rfcomm0" 
 BAUD_RATE = 9600
 POST_URL = f"https://dweet.cc/dweet/for/{BASE_THING_NAME}"
@@ -157,17 +157,17 @@ if __name__ == "__main__":
     main()
 ```
 ??? notes "How it works"
-    - Serial Input: Opens the Bluetooth serial device (/dev/rfcomm0) at 9600 baud, matching the Arduino’s Serial.begin(9600). The 2-second sleep lets Arduino reset.
-    - Parsing: Each line read from serial is decoded (utf-8) and passed to parse_temperatures(), which splits by comma and converts to floats.Malformed lines return None and are skipped.
-    - Timestamp: Generates an ISO-8601 timestamp (datetime.now().isoformat()) stored as time.
+    - Serial Input: Opens the Bluetooth serial device (`/dev/rfcomm0`) at 9600 baud, matching the Arduino’s `Serial.begin(9600)`. The 2-second sleep lets Arduino reset.
+    - Parsing: Each line read from serial is decoded (utf-8) and passed to `parse_temperatures()`, which splits by comma and converts to `floats.Malformed` lines return `None` and are skipped.
+    - Timestamp: Generates an ISO-8601 timestamp (`datetime.now().isoformat()`) stored as time.
     - Payload & Dweet:
-        - Sends a GET request to https://dweet.cc/dweet/for/whittlesea_tech_school.
-        - Includes keys: temperature1, temperature2, temperature3, and time.
+        - Sends a GET request to `https://dweet.cc/dweet/for/test`.
+        - Includes keys: `temperature1`, `temperature2`, `temperature3`, and `time`.
         - On success, prints the payload and HTTP status code.
-    - Retry Logic: If serial or network errors occur, it logs a warning and retries after 5 seconds. Ctrl+C stops the loop gracefully.
-    - Thing Privacy: BASE_THING_NAME is public-by-name on dweet.cc. Use a non-obvious name if you want to reduce casual discovery.
+    - Retry Logic: If serial or network errors occur, it logs a warning and retries after 5 seconds. `Ctrl+C` stops the loop gracefully.
+    - Thing Privacy: `BASE_THING_NAME` is public-by-name on `dweet.cc`. Use a non-obvious name if you want to reduce casual discovery.
 
-## Python Fetch & Plot (currently plots only temperature1)
+## Python Fetch & Plot
 
 ```python
 import requests
@@ -176,7 +176,7 @@ import numpy as np
 from datetime import datetime
 from typing import Tuple
 
-THING_NAME = "whittlesea_tech_school"
+THING_NAME = "test"
 BASE_URL = "https://dweet.cc"
 
 def fetch_latest() -> Tuple[float, datetime]:
@@ -196,21 +196,26 @@ def plot_history_temperature():
     r.raise_for_status()
     data = r.json()
     history = data["with"]
-    temperatures = []
+    temperature1, temperature2, temperature3 = [], [], []
     dates = []
     for data in history:
-       temperatures.append(float(data["content"]["temperature1"]))
+       temperature1.append(float(data["content"]["temperature1"]))
+       temperature2.append(float(data["content"]["temperature2"]))
+       temperature3.append(float(data["content"]["temperature3"]))
        dates.append(datetime.fromisoformat(data["content"]["time"]))
     
     # Create figure and axes
     fig, ax = plt.subplots(figsize=(8, 4))
 
     # Plot the data
-    ax.plot(dates, temperatures)
+    ax.plot(dates, temperature1)
+    ax.plot(dates, temperature2, color='green')
+    ax.plot(dates, temperature3, color="blue")
 
     #vFormat the x-axis for better readability
     # Automatically format the date labels
     fig.autofmt_xdate() 
+    fig.legend(["Temperature 1","Temperature 2","Temperature 3"])
 
     # Add labels and title
     ax.set(xlabel="Time", ylabel="Temperature (C)", title="Time vs temperature plot")
@@ -219,27 +224,26 @@ def plot_history_temperature():
     plt.show()
        
 
+
 if __name__ == "__main__":
     reading = fetch_latest()
     print("Latest reading:", reading)
     plot_history_temperature()
+
 ```
+!!! warning "JSON content"
+    - Ensure that the data from publishing and extracting the dictionary are consistent otherwise error will occur.
 
 ??? notes "How it works"
     - Endpoints Used:
-        - Latest: GET /get/latest/dweet/for/{THING_NAME} — returns the most recent - dweet; this script extracts content.temperature1 and the custom time.
-        - History: GET /get/dweets/for/{THING_NAME} — returns a list under with; the script iterates through it to build arrays.
+        - Latest: `GET /get/latest/dweet/for/{THING_NAME}` — returns the most recent - dweet; this script extracts content.temperature1 and the custom time.
+        - History: `GET /get/dweets/for/{THING_NAME}` — returns a list under with; the script iterates through it to build arrays.
 
     - Data Extraction:
-        - temperatures: list of temperature1 values from each dweet’s content.
+        - temperatures: list of `temperature1`, `temperature2` and `temperature3`values from each dweet’s content.
         - dates: list of parsed timestamps from content.time (ISO-8601).
 
     - Plotting:
 
-        - Uses Matplotlib to plot Temperature 1 vs Time.
-        - Calls fig.autofmt_xdate() to make time labels readable.
-
-
-    - Current Limitation:
-
-        - Only temperature1 is plotted. To visualize all three, you’d parse temperature2 and temperature3 similarly and plot multiple lines on the same axes.
+        - Uses `Matplotlib` to plot Temperature vs Time.
+        - Calls `fig.autofmt_xdate()` to make time labels readable.

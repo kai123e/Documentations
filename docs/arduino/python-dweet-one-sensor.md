@@ -58,7 +58,7 @@ delay(1000);
 !!! warning "Upload tip"
     Disconnect HC‑05 TX/RX while uploading the Arduino sketch (they share the hardware serial pins D0/D1).
 
-
+## Python Publisher: Read Serial & Dweet (sender.py)
 === "sender.py"
 ```python
 import time
@@ -67,7 +67,7 @@ import serial
 from datetime import datetime
 
 # ---- CONFIG ----
-BASE_THING_NAME = "whittlesea_tech_school"
+BASE_THING_NAME = "test"
 SERIAL_PORT = "/dev/rfcomm0" 
 BAUD_RATE = 9600
 URL = f"https://dweet.cc/dweet/for/{BASE_THING_NAME}"
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     - Linux: /dev/rfcomm0 (as shown)
 
     - Update SERIAL_PORT accordingly.
-    (Optional) Make BASE_THING_NAME unique (e.g., whittlesea_tech_school_g01).
+    (Optional) Make BASE_THING_NAME unique (e.g., test_g01).
 
 Run the script as followed
 === "bash"
@@ -137,7 +137,7 @@ You should see lines like:
 ```
 Sent: {'temperature_c': 24.6, 'time': '2026-01-27T09:45:02.123456'} | Response: 200
 ```
-
+## Python Fetch & Plot
 === "reciver.py"
 ```python
 import requests
@@ -146,7 +146,7 @@ import numpy as np
 from datetime import datetime
 from typing import Tuple
 
-THING_NAME = "whittlesea_tech_school"
+THING_NAME = "test"
 BASE_URL = "https://dweet.cc"
 
 def fetch_latest() -> Tuple[float, datetime]:
