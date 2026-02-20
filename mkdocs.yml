@@ -55,16 +55,16 @@ markdown_extensions:
 
 extra:
   social:
-    - icon: fontawesome/brands/youtube
-      link: https://youtube.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/kai123e
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com
+      link: https://www.linkedin.com/in/kai-zheng-a9756839a/
 
-copyright: Copyright &copy; 2025 Kai
+copyright: Copyright &copy; 2026 Kai
+
 
 nav:
   - Home: index.md
-  - Examples: admonitions.md
   - Arduino:
       - Python on Lubuntu: arduino/installing-python.md
       - Arduino IDE Installation on Ubuntu: arduino/installing-arduino-on-lubuntu.md
